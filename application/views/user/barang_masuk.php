@@ -13,8 +13,8 @@
 		Daftar Barang Belum Divalidasi
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li><a href="#">Barang</a></li>
+		<li><a href="<?php echo base_url('user/index');?>"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="<?php echo base_url('user/barang_masuk');?>">Barang</a></li>
 		<li class="active">Belum Divalidasi</li>
 	</ol>
 </section>

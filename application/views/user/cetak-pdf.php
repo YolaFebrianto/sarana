@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Sarana Prasarana SMK Muhammadiyah 1 Malang</title>
+	<title>Sarana Prasarana SMK PGRI 2 Kota Malang</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<style type="text/css">
@@ -59,11 +59,12 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-3">
-				<img src="<?php echo base_url().'template/dist/img/logo.jpg'; ?>">
+				<img src="<?php echo base_url().'template/dist/img/logo.png'; ?>">
 			</div>
 			<div class="col-md-9">
-				<h1 style="margin-bottom:0;">SMK MUHAMMADIYAH 1 MALANG</h1>
-				<p style="margin:5px;">Jl. Galunggung No.37a, Gading Kasri, Klojen, Kota Malang, Jawa Timur 651175</p>
+				<h1 style="margin-bottom:0;">SMK PGRI 2 KOTA MALANG</h1>
+				<p style="margin:0;">Jl. Janti Barat Blok A No 25, Bandungsari</p>
+				<p style="margin:5px;">Kec. Sukun, Kota Malang, Jawa Timur 65148</p>
 			</div>
 		</div>
 		<div style="clear: both;"></div>

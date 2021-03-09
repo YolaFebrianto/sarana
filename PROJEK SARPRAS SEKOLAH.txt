@@ -1,0 +1,4 @@
+barang masuk (input staff) = 0
+validasi waka = 1
+tolak waka = 2
+validasi kasek = 3

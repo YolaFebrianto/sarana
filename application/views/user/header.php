@@ -6,7 +6,7 @@
 	<title>SI Sarana Prasarana SMK Muhammadiyah 1 Malang</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="shortcut icon" href="<?=base_url();?>template/dist/img/logo.jpg">
+	<link rel="shortcut icon" href="<?=base_url();?>template/dist/img/logo_mini.png">
 	<!-- bootstrap 3.3.6 -->
 	<link rel="stylesheet" href="<?=base_url();?>template/bootstrap/css/bootstrap.min.css">
 	<!-- Font Awesome -->
@@ -36,6 +36,47 @@
 				overflow-x: hidden;
 			}
 		}
+		.skin-blue .main-header .navbar{
+			background: #32642D;
+		}
+		.skin-blue .main-header .logo{
+			background: #224820;
+		}
+		.content-wrapper, .right-side{
+			background: #D0FED0;
+		}
+		.skin-blue .sidebar-menu>li.header{
+			background: #224820;
+			color: white;
+		}
+		.skin-blue .wrapper, 
+		.skin-blue .main-sidebar, 
+		.skin-blue .left-side{
+			background: #224820;
+		}
+		.skin-blue .sidebar-menu>li:hover>a, 
+		.skin-blue .sidebar-menu>li.active>a{
+			background: #32642D;
+			border-left-color: white;
+		}
+		.box.box-info,.box.box-primary{
+			border-top-color: green;
+		}
+		.skin-blue .main-header .navbar .sidebar-toggle:hover{
+			background: #224820;
+		}
+		.skin-blue .main-header .logo:hover{
+			background: #32642D;
+		}
+		.pagination>.active>a, 
+		.pagination>.active>a:focus, 
+		.pagination>.active>a:hover, 
+		.pagination>.active>span, 
+		.pagination>.active>span:focus, 
+		.pagination>.active>span:hover{
+			background: green;
+			border-color: green;
+		}
 	</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -48,7 +89,7 @@
 		$dataUser = $this->db->get_where('tbluser',$where)->row_array();
 	}
 	$jml_brg_tunggu = $this->db->get_where('tblbarang',['status'=>0])->num_rows();
-	$jml_brg_blm_disetujui = $this->db->get_where('tblbarang',['status'=>1])->num_rows();
+	$jml_brg_blm_disetujui = $this->db->get_where('tblbarang',['status'=>0])->num_rows();
 ?>
 <div class="wrapper">
 	<header class="main-header">

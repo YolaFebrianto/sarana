@@ -4,7 +4,7 @@
 		Tambah Barang
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="<?php echo base_url('user/index');?>"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li><a href="<?=base_url('user/barang_masuk');?>"> Barang </a></li>
 		<li class="active">Tambah</li>
 	</ol>
@@ -16,9 +16,20 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 				<?= form_open('user/add'); ?>
+				<?php
+					$this->db->order_by('no','desc');
+					$lastId = $this->db->get_where('tblbarang',[],1)->row_array();
+					$kode_barang="";
+					if (strlen($lastId['no'])<4) {
+						$kode_barang = str_pad($lastId['no']+1, 3, '0', STR_PAD_LEFT);
+					} else {
+						$kode_barang = $lastId['no']+1; 
+					}
+					$kode_barang = "BRG-".$kode_barang;
+				?>
 					<div class="form-group">
 						<label>Kode Barang :</label>
-						<input type="text" name="kode_barang" class="form-control" required>
+						<input type="text" name="kode_barang" class="form-control" required value="<?php echo $kode_barang; ?>">
 					</div>
 					<div class="form-group">
 						<label>Nama Barang :</label>
@@ -62,7 +73,7 @@
 						<label>Keterangan :</label>
 						<textarea name="keterangan" class="form-control" rows="3"></textarea>
 					</div>	
-					<input type="submit" name="tambah" value="Submit" class="btn btn-primary">
+					<input type="submit" name="tambah" value="Submit" class="btn btn-success">
 				<?= form_close(); ?>
 				</div>
 			</div>

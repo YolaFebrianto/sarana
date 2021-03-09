@@ -47,7 +47,8 @@ class User extends CI_Controller {
 		} else {
 		// JIKA data tdk ditemukan BUAT SESSION utk mengambalikan error
 			$this->session->set_flashdata('error','User ID atau Password Salah!');
-			redirect();
+			$this->session->set_flashdata('user_login',$username);
+			redirect('user/index');
 		}
 	}
 	public function barang_disetujui(){
@@ -175,7 +176,7 @@ class User extends CI_Controller {
 		}
 		$url='user/barang_disetujui';
 		if ($status==1) {
-			$url='user/barang_validasi';
+			$url='user/barang_divalidasi';
 		} else if ($status==2) {
 			$url='user/barang_ditolak';
 		}

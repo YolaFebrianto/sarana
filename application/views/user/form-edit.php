@@ -4,7 +4,7 @@
 		Update Barang
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="<?php echo base_url('user/index');?>"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li><a href="<?php echo base_url('user/barang_masuk') ?>"> Barang </a></li>
 		<li><a href="#"><?=$edit['no'];?></a></li>
 		<li class="active">Update</li>
@@ -64,7 +64,7 @@
 						<label>Keterangan :</label>
 						<textarea name="keterangan" class="form-control" rows="3"><?=$edit['keterangan'];?></textarea>
 					</div>	
-					<input type="submit" name="update" value="Submit" class="btn btn-primary">
+					<input type="submit" name="update" value="Submit" class="btn btn-success">
 				<?= form_close(); ?>
 				</div>
 			</div>
