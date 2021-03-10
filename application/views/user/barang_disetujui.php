@@ -21,7 +21,10 @@
                 <input type="text" name="tahun" class="form-control" value="<?php echo date('Y'); ?>" placeholder="Input Tahun" id="year-input">
               </div>
               <div class="col-md-4 col-sm-4 col-xs-4">
-                <button type="submit" class="btn btn-md btn-default btn-flat">
+                <button type="button" class="btn btn-md btn-default btn-flat" data-toggle="modal" data-target="#modal" onclick="getTahun()">
+                  <span class="fa fa-print"></span> Cetak
+                </button>
+                <button type="submit" class="btn btn-md btn-default btn-flat" style="display:none;" id="btnCetak">
                   <span class="fa fa-print"></span> Cetak
                 </button>
               </div>
@@ -48,7 +51,7 @@
               </thead>
               <tbody>
               <?php
-              	$no=0; 
+                $no=1;
               	foreach ($barang as $key => $value) { ?>
               <tr>
               	<td><?php echo $no++; ?></td>
@@ -74,3 +77,34 @@
   <!-- /.row -->
 </section>
 <!-- /.content -->
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <b class="modal-title" id="modalLabel">Peringatan !!!</b>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Apakah anda yakin akan mencetak barang tahun <span id="tahun"></span> ?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-primary" onclick="kirim()">Ya</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function kirim(){
+    $('#btnCetak').click();
+  }
+  function getTahun(){
+    var tahun_val = $('input#year-input').val();
+    $('#tahun').html(tahun_val);
+  }
+</script>

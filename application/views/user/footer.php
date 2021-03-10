@@ -67,6 +67,9 @@
         });
         $(this).datepicker('clearDates');
     });
+    $(function(){
+    	$('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 </body>
 </html>

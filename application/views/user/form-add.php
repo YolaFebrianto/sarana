@@ -29,7 +29,7 @@
 				?>
 					<div class="form-group">
 						<label>Kode Barang :</label>
-						<input type="text" name="kode_barang" class="form-control" required value="<?php echo $kode_barang; ?>">
+						<input type="text" name="kode_barang" class="form-control" required value="<?php echo $kode_barang; ?>" readonly>
 					</div>
 					<div class="form-group">
 						<label>Nama Barang :</label>
@@ -72,11 +72,41 @@
 					<div class="form-group">
 						<label>Keterangan :</label>
 						<textarea name="keterangan" class="form-control" rows="3"></textarea>
-					</div>	
-					<input type="submit" name="tambah" value="Submit" class="btn btn-success">
+					</div>
+					<a href="#" class="btn btn-success" data-toggle="modal" data-target="#modal">
+						Simpan
+					</a>
+					<input type="submit" name="tambah" value="Simpan" class="btn btn-success" id="btnSubmit" style="display: none;">
 				<?= form_close(); ?>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <b class="modal-title" id="modalLabel">Peringatan !!!</b>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Apakah anda yakin akan menyimpan data barang dengan kode <span id="kode"><?=$kode_barang;?></span> ?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-primary" onclick="kirim()">Ya</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	function kirim(){
+		$('#btnSubmit').click();
+	}
+</script>

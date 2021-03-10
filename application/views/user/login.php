@@ -30,7 +30,8 @@
 <body  class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a href=""><b>User</b> Login</a>
+			<img src="<?=base_url();?>template/dist/img/logo.png">
+			<div><a href="#"><b>Login</b></a></div>
 		</div>
 
 		<div class="login-box-body">

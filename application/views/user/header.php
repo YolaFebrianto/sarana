@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SI Sarana Prasarana SMK Muhammadiyah 1 Malang</title>
+	<title>SI Sarana Prasarana SMK PGRI 2 Malang</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="shortcut icon" href="<?=base_url();?>template/dist/img/logo_mini.png">
@@ -113,7 +113,7 @@
 						<a href="#"><?php echo $dataUser['full_name']; ?></a>
 					</li>
 					<li>
-						<a href="<?php echo base_url('user/logout'); ?>"><span class="fa fa-sign-in"></span> Logout</a>
+						<a href="#" data-toggle="modal" data-target="#modalLogout"><span class="fa fa-sign-in"></span> Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -141,12 +141,12 @@
 				?>
 				<li <?php echo($this->uri->segment(2)=='barang_disetujui')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_disetujui'); ?>">
-						<i class="fa fa-list"></i> <span>Daftar Barang Disetujui</span>
+						<i class="fa fa-list"></i> <span>Data Barang Disetujui</span>
 					</a>
 				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_divalidasi')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_divalidasi'); ?>">
-						<i class="fa fa-undo"></i> <span>Daftar Barang Divalidasi</span>
+						<i class="fa fa-undo"></i> <span>Data Barang Divalidasi</span>
 					</a>
 				</li>
 				<?php
@@ -154,17 +154,17 @@
 				?>
 				<li <?php echo($this->uri->segment(2)=='barang_disetujui')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_disetujui'); ?>">
-						<i class="fa fa-list"></i> <span>Daftar Barang Disetujui</span>
+						<i class="fa fa-list"></i> <span>Data Barang Disetujui</span>
 					</a>
 				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_divalidasi')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_divalidasi'); ?>">
-						<i class="fa fa-undo"></i> <span>Daftar Barang Divalidasi</span>
+						<i class="fa fa-undo"></i> <span>Data Barang Divalidasi</span>
 					</a>
 				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_masuk')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_masuk'); ?>">
-						<i class="fa fa-download"></i> <span>Daftar Barang Masuk</span>
+						<i class="fa fa-download"></i> <span>Data Barang Masuk</span>
 						<?php if($jml_brg_blm_disetujui>0): ?>
 						<span class="pull-right-container">
 							<small class="label pull-right bg-orange"><?=$jml_brg_blm_disetujui;?></small>
@@ -177,7 +177,7 @@
 				?>
 				<li <?php echo($this->uri->segment(2)=='barang_disetujui')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_disetujui'); ?>">
-						<i class="fa fa-list"></i> <span>Daftar Barang Disetujui</span>
+						<i class="fa fa-list"></i> <span>Data Barang Disetujui</span>
 					</a>
 				</li>
 				<li <?php echo($this->uri->segment(2)=='form_add')?'class="active"':'';?>>
@@ -187,7 +187,7 @@
 				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_masuk')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_masuk'); ?>">
-						<i class="fa fa-clock-o"></i> <span>Daftar Barang Tunggu</span>
+						<i class="fa fa-clock-o"></i> <span>Data Barang Tunggu</span>
 						<?php if($jml_brg_tunggu>0): ?>
 						<span class="pull-right-container">
 							<small class="label pull-right bg-orange"><?=$jml_brg_tunggu;?></small>
@@ -197,7 +197,7 @@
 				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_ditolak')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_ditolak'); ?>">
-						<i class="fa fa-file"></i> <span>Daftar Barang Ditolak</span>
+						<i class="fa fa-file"></i> <span>Data Barang Ditolak</span>
 					</a>
 				</li>
 				<?php
@@ -205,7 +205,7 @@
 				?>
 				<li <?php echo($this->uri->segment(2)=='barang_disetujui')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_disetujui'); ?>">
-						<i class="fa fa-list"></i> <span>Daftar Barang Disetujui</span>
+						<i class="fa fa-list"></i> <span>Data Barang Disetujui</span>
 					</a>
 				</li>
 				<li <?php echo($this->uri->segment(2)=='form_add')?'class="active"':'';?>>
@@ -215,7 +215,7 @@
 				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_masuk')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_masuk'); ?>">
-						<i class="fa fa-clock-o"></i> <span>Daftar Barang Tunggu</span>
+						<i class="fa fa-clock-o"></i> <span>Data Barang Tunggu</span>
 						<?php if($jml_brg_tunggu>0): ?>
 						<span class="pull-right-container">
 							<small class="label pull-right bg-orange"><?=$jml_brg_tunggu;?></small>
@@ -225,12 +225,12 @@
 				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_ditolak')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_ditolak'); ?>">
-						<i class="fa fa-file"></i> <span>Daftar Barang Ditolak</span>
+						<i class="fa fa-file"></i> <span>Data Barang Ditolak</span>
 					</a>
 				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_divalidasi')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_divalidasi'); ?>">
-						<i class="fa fa-undo"></i> <span>Daftar Barang Divalidasi</span>
+						<i class="fa fa-undo"></i> <span>Data Barang Divalidasi</span>
 					</a>
 				</li>
 				<?php
@@ -262,3 +262,25 @@
 				</div>
 			</div>
 		</section>
+<!-- Modal -->
+<div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="modalLogoutLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <b class="modal-title" id="modalLogoutLabel">Peringatan !!!</b>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Apakah anda yakin akan logout ? 
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <a href="<?php echo base_url('user/logout'); ?>" class="btn btn-primary">Ya</a>
+      </div>
+    </div>
+  </div>
+</div>

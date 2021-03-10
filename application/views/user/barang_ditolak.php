@@ -59,7 +59,9 @@
               	<td><?php echo $value->sumber_dana; ?></td>
                 <?php if($dataUser['level']==3){ ?>
                 <td>
-                  <a href="#" class="btn btn-sm btn-danger" onclick="konfirmasi(<?=$value->no;?>)"><span class="fa fa-trash-o"></span> </a>
+                  <a href="#" class="btn btn-sm btn-danger" onclick="konfirmasi(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalHapus">
+                    <span class="fa fa-trash-o"></span> 
+                  </a>
                 </td>
                 <?php } ?>
               </tr>
@@ -76,11 +78,35 @@
   <!-- /.row -->
 </section>
 <!-- /.content -->
+<!-- Modal -->
+<div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <b class="modal-title" id="modalHapusLabel">Peringatan !!!</b>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Apakah anda yakin akan menghapus barang dengan kode <span id="kode"></span> ?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <a href="#" class="btn btn-primary" id="deleteYes">Ya</a>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
-  function konfirmasi(id){
-    var cek = confirm("Anda Yakin Akan Menghapus Data Ini?");
-    if (cek) {
-      window.location.href="<?php echo base_url(); ?>user/delete/"+id;
-    }
+  function konfirmasi(id,kode){
+    $('span#kode').html(kode);
+    $('#deleteYes').attr('href','<?php echo base_url(); ?>user/delete/'+id);
+    // var cek = confirm("Anda Yakin Akan Menghapus Data Ini?");
+    // if (cek) {
+    //   window.location.href="<?php echo base_url(); ?>user/delete/"+id;
+    // }
   }
 </script>
