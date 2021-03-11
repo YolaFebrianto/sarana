@@ -18,8 +18,8 @@ class User extends CI_Controller {
 			$data['jumlahData'] = $query->num_rows();
 			$data['barang']		= $query->result();
 			$data['jumlahTunggu'] = $this->db->get_where('tblbarang',['status'=>0])->num_rows();
-			$data['jumlahTolak'] = $this->db->get_where('tblbarang',['status'=>1])->num_rows();
-			$data['jumlahValidasi'] = $this->db->get_where('tblbarang',['status'=>2])->num_rows();
+			$data['jumlahValidasi'] = $this->db->get_where('tblbarang',['status'=>1])->num_rows();
+			$data['jumlahTolak'] = $this->db->get_where('tblbarang',['status'=>2])->num_rows();
 			$data['jumlahSetujui'] = $this->db->get_where('tblbarang',['status'=>3])->num_rows();
 			$this->load->view('user/header');
 			$this->load->view('user/home',$data);
