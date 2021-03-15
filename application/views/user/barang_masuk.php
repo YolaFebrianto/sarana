@@ -68,10 +68,14 @@
                 </td>
                 <?php } else if($dataUser['level']==2) { ?>
                 <td>
-                  <a href="<?=base_url('user/edit_status/'.$value->no.'/1');?>" class="btn btn-sm btn-success"><span class="fa fa-check"></span> Validasi</a> 
+                  <a href="#" class="btn btn-sm btn-success" onclick="konfirmasi1(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalValidasi">
+                    <span class="fa fa-check"></span> Validasi
+                  </a>
                 </td>
                 <td>
-                  <a href="<?=base_url('user/edit_status/'.$value->no.'/2');?>" class="btn btn-sm btn-danger"><span class="fa fa-trash-o"></span> Tolak</a>
+                  <a href="#" class="btn btn-sm btn-danger" onclick="konfirmasi2(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalTolak">
+                    <span class="fa fa-trash-o"></span> Tolak
+                  </a>
                 </td>
                 <?php } ?>
               </tr>
@@ -88,3 +92,56 @@
   <!-- /.row -->
 </section>
 <!-- /.content -->
+<!-- Modal -->
+<div class="modal fade" id="modalValidasi" tabindex="-1" role="dialog" aria-labelledby="modalValidasiLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <b class="modal-title" id="modalValidasiLabel">Peringatan !!!</b>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Apakah anda yakin akan MEMVALIDASI data barang dengan kode <span id="kode1"></span> ?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <a href="#" class="btn btn-primary" id="validasiYes">Ya</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalTolak" tabindex="-1" role="dialog" aria-labelledby="modalTolakLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <b class="modal-title" id="modalTolakLabel">Peringatan !!!</b>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Apakah anda yakin akan MENOLAK data barang dengan kode <span id="kode2"></span> ?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <a href="#" class="btn btn-primary" id="tolakYes">Tolak</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function konfirmasi1(id,kode){
+    $('span#kode1').html(kode);
+    $('#validasiYes').attr('href','<?=base_url();?>user/edit_status/'+id+'/1');
+  }
+  function konfirmasi2(id,kode){
+    $('span#kode2').html(kode);
+    $('#tolakYes').attr('href','<?=base_url();?>user/edit_status/'+id+'/2');
+  }
+</script>

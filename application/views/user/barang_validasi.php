@@ -58,7 +58,11 @@
               	<td><?php echo $value->jenis_barang; ?></td>
               	<td><?php echo $value->sumber_dana; ?></td>
                 <?php if ($dataUser['level']==1) { ?>
-              	<td><a href="<?=base_url('user/edit_status/'.$value->no.'/3');?>" class="btn btn-sm btn-success"><span class="fa fa-check"></span> Setujui </a></td>
+                <td>
+                  <a href="#" class="btn btn-sm btn-success" onclick="konfirmasi3(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalSetujui">
+                    <span class="fa fa-check"></span> Setujui
+                  </a>
+                </td>
                 <?php } ?>
               </tr>
               <?php } ?>
@@ -74,3 +78,31 @@
   <!-- /.row -->
 </section>
 <!-- /.content -->
+<!-- Modal -->
+<div class="modal fade" id="modalSetujui" tabindex="-1" role="dialog" aria-labelledby="modalSetujuiLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <b class="modal-title" id="modalSetujuiLabel">Peringatan !!!</b>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Apakah anda yakin akan MENYETUJUI data barang dengan kode <span id="kode"></span> ?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <a href="#" class="btn btn-primary" id="setujuiYes">Ya</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function konfirmasi3(id,kode){
+    $('span#kode').html(kode);
+    $('#setujuiYes').attr('href','<?=base_url();?>user/edit_status/'+id+'/3');
+  }
+</script>
