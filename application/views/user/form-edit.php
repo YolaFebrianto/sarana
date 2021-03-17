@@ -75,26 +75,34 @@
 	</div>
 </section>
 <!-- Modal -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <b class="modal-title" id="modalLabel">Peringatan !!!</b>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          Apakah anda yakin akan menyimpan data barang dengan kode <span id="kode"><?=$edit['kode_barang'];?></span> ?
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" onclick="kirim()">Ya</button>
-      </div>
-    </div>
-  </div>
+<div class="modal fade bd-example-modal-sm" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog modal-sm vertical-align-center" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="modalEditLabel" style="text-align:center;">
+						Edit Barang
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p style="text-align:center;font-weight:bold;">
+					Apakah anda yakin akan menyimpan data barang dengan kode <span id="kode"><?=$edit['kode_barang'];?></span> ?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">
+						<span class="fa fa-times"></span> Tidak
+					</button>
+					<button type="button" class="btn btn-primary" onclick="kirim()">
+						<span class="fa fa-check"></span> Ya
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <script type="text/javascript">
 	function kirim(){

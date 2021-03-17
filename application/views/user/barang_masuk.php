@@ -93,44 +93,60 @@
 </section>
 <!-- /.content -->
 <!-- Modal -->
-<div class="modal fade" id="modalValidasi" tabindex="-1" role="dialog" aria-labelledby="modalValidasiLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <b class="modal-title" id="modalValidasiLabel">Peringatan !!!</b>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          Apakah anda yakin akan MEMVALIDASI data barang dengan kode <span id="kode1"></span> ?
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <a href="#" class="btn btn-primary" id="validasiYes">Ya</a>
+<div class="modal fade bd-example-modal-sm" id="modalValidasi" tabindex="-1" role="dialog" aria-labelledby="modalValidasiLabel" aria-hidden="true">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog modal-sm vertical-align-center" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modalValidasiLabel" style="text-align:center;">
+            Validasi Barang
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <p style="text-align:center;font-weight:bold;">
+            Apakah anda yakin akan MEMVALIDASI data barang dengan kode <span id="kode1"></span> ?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            <span class="fa fa-times"></span> Tidak
+          </button>
+          <a href="#" class="btn btn-primary" id="validasiYes">
+            <span class="fa fa-check"></span> Ya
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="modalTolak" tabindex="-1" role="dialog" aria-labelledby="modalTolakLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <b class="modal-title" id="modalTolakLabel">Peringatan !!!</b>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          Apakah anda yakin akan MENOLAK data barang dengan kode <span id="kode2"></span> ?
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <a href="#" class="btn btn-primary" id="tolakYes">Tolak</a>
+<div class="modal fade bd-example-modal-sm" id="modalTolak" tabindex="-1" role="dialog" aria-labelledby="modalTolakLabel" aria-hidden="true">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog modal-sm vertical-align-center" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modalTolakLabel" style="text-align:center;">
+            Tolak Barang
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <p style="text-align:center;font-weight:bold;">
+            Apakah anda yakin akan MENOLAK data barang dengan kode <span id="kode2"></span> ?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            <span class="fa fa-times"></span> Tidak
+          </button>
+          <a href="#" class="btn btn-primary" id="tolakYes">
+            <span class="fa fa-check"></span> Ya
+          </a>
+        </div>
       </div>
     </div>
   </div>

@@ -77,6 +77,28 @@
 			background: green;
 			border-color: green;
 		}
+		/* MODAL VERTICAL CENTER */
+		.vertical-alignment-helper {
+			display:table;
+			height: 100%;
+			width: 100%;
+			pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+		}
+		.vertical-align-center {
+			/* To center vertically */
+			display: table-cell;
+			vertical-align: middle;
+			pointer-events:none;
+		}
+		.modal-content {
+			/* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+			width:inherit;
+			max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching full width */
+			height:inherit;
+			/* To center horizontally */
+			margin: 0 auto;
+			pointer-events: all;
+		}
 	</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -263,24 +285,32 @@
 			</div>
 		</section>
 <!-- Modal -->
-<div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="modalLogoutLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <b class="modal-title" id="modalLogoutLabel">Peringatan !!!</b>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          Apakah anda yakin akan logout ? 
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <a href="<?php echo base_url('user/logout'); ?>" class="btn btn-primary">Ya</a>
-      </div>
-    </div>
-  </div>
+<div class="modal fade bd-example-modal-sm" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="modalLogoutLabel" aria-hidden="true">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog modal-sm vertical-align-center" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="modalLogoutLabel" style="text-align:center;">
+						Peringatan !!!
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p style="text-align:center;font-weight:bold;">
+						Apakah anda yakin akan logout ?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">
+						<span class="fa fa-times"></span> Tidak
+					</button>
+					<a href="<?php echo base_url('user/logout'); ?>" class="btn btn-primary">
+						<span class="fa fa-check"></span> Ya
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
