@@ -36,6 +36,10 @@
 						<input type="text" name="nama_barang" class="form-control" required>	
 					</div>
 					<div class="form-group">
+						<label>Tanggal :</label>
+						<input type="date" name="tanggal_masuk" class="form-control" required>
+					</div>
+					<div class="form-group">
 						<label>Lokasi Barang :</label>
 						<input type="text" name="lokasi_barang" class="form-control">	
 					</div>
@@ -64,7 +68,7 @@
 						<select name="sumber_dana" class="form-control">
 							<option value="" selected="" disabled="">-- PILIH --</option>
 							<option>BOS</option>
-							<option>BPUPP</option>
+							<option>BPOPP</option>
 							<option>Direktorat</option>
 							<option>Dana Masyarakat</option>
 						</select>	

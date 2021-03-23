@@ -39,7 +39,7 @@
                 <th>Jenis Barang</th>
                 <th>Sumber Dana</th>
                 <?php if($dataUser['level']==3){ ?>
-                <th>Hapus</th>
+                <th>Aksi</th>
                 <?php } ?>
               </tr>
               </thead>
@@ -59,9 +59,11 @@
               	<td><?php echo $value->sumber_dana; ?></td>
                 <?php if($dataUser['level']==3){ ?>
                 <td>
-                  <a href="#" class="btn btn-sm btn-danger" onclick="konfirmasi(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalHapus">
-                    <span class="fa fa-trash-o"></span> 
-                  </a>
+                  <div data-toggle="tooltip" data-placement="top" title="Hapus">
+                    <a href="#" class="btn btn-sm btn-danger" onclick="konfirmasi(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalHapus">
+                      <span class="fa fa-trash-o"></span>
+                    </a>
+                  </div>
                 </td>
                 <?php } ?>
               </tr>

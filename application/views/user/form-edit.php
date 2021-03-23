@@ -27,6 +27,10 @@
 						<input type="text" name="nama_barang" class="form-control" required value="<?=$edit['nama_barang'];?>">	
 					</div>
 					<div class="form-group">
+						<label>Tanggal :</label>
+						<input type="date" name="tanggal_masuk" class="form-control" required value="<?=$edit['tanggal_masuk'];?>">
+					</div>
+					<div class="form-group">
 						<label>Lokasi Barang :</label>
 						<input type="text" name="lokasi_barang" class="form-control" value="<?=$edit['lokasi_barang'];?>">
 					</div>
@@ -55,7 +59,7 @@
 						<select name="sumber_dana" class="form-control">
 							<option value="" selected="" disabled="">-- PILIH --</option>
 							<option <?=($edit['sumber_dana']=='BOS')?'selected':'';?>>BOS</option>
-							<option <?=($edit['sumber_dana']=='BPUPP')?'selected':'';?>>BPUPP</option>
+							<option <?=($edit['sumber_dana']=='BPOPP')?'selected':'';?>>BPOPP</option>
 							<option <?=($edit['sumber_dana']=='Direktorat')?'selected':'';?>>Direktorat</option>
 							<option <?=($edit['sumber_dana']=='Dana Masyarakat')?'selected':'';?>>Dana Masyarakat</option>
 						</select>	

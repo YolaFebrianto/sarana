@@ -39,7 +39,7 @@
                 <th>Jenis Barang</th>
                 <th>Sumber Dana</th>
                 <?php if ($dataUser['level']==1) { ?>
-                <th>Setuju</th>
+                <th>Aksi</th>
                 <?php } ?>
               </tr>
               </thead>
@@ -59,7 +59,10 @@
               	<td><?php echo $value->sumber_dana; ?></td>
                 <?php if ($dataUser['level']==1) { ?>
                 <td>
-                  <a href="#" class="btn btn-sm btn-success" onclick="konfirmasi3(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalSetujui">
+                  <!-- <a href="#" class="btn btn-sm btn-success" onclick="konfirmasi3(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalSetujui">
+                    <span class="fa fa-check"></span> Setujui
+                  </a> -->
+                  <a href="<?=base_url().'user/edit_status/'.$value->no.'/3';?>" class="btn btn-sm btn-success">
                     <span class="fa fa-check"></span> Setujui
                   </a>
                 </td>

@@ -117,7 +117,7 @@ class User extends CI_Controller {
 	}
 	public function add(){
 		$data = [
-			'tanggal_masuk' => date('Y-m-d'),
+			'tanggal_masuk' => $this->input->post('tanggal_masuk'),
 			'kode_barang'	=> $this->input->post('kode_barang'),
 			'nama_barang'	=> $this->input->post('nama_barang'),
 			'lokasi_barang'	=> $this->input->post('lokasi_barang'),
@@ -144,7 +144,7 @@ class User extends CI_Controller {
 	}
 	public function edit(){
 		$data = [
-			'tanggal_masuk' => date('Y-m-d'),
+			'tanggal_masuk' => $this->input->post('tanggal_masuk'),
 			'kode_barang'	=> $this->input->post('kode_barang'),
 			'nama_barang'	=> $this->input->post('nama_barang'),
 			'lokasi_barang'	=> $this->input->post('lokasi_barang'),
