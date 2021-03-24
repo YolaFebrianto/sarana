@@ -53,6 +53,29 @@
 		width: 84%;
 		display: inline-block;
 	}
+	.col-md-6{
+		width: 40%;
+		display: inline-block;
+	}
+	.row-footer {
+		width: 100%;
+		height:200px;
+		position:fixed;
+		bottom:0px;
+	}
+	.col-footer {
+		height:200px;
+		width:30%;
+		display: inline-block;
+	}
+	.col-footer p {
+		margin: 0;
+		font-size: 16px;
+		line-height: 20px;
+	}
+	.col-footer p.enter {
+		height: 100px;
+	}
 	</style>
 </head>
 <body>
@@ -76,7 +99,7 @@
 		<?php
 			if ($barang != null) { 
 		?>
-		<table class="table table-bordered">
+		<table class="table table-bordered" style="margin-bottom:200px;">
 			<thead>
 				<tr>
 					<th>No</th>
@@ -118,6 +141,23 @@
 				echo "<p style='text-align:center;'>Data Inventaris Tahun <b>".$tahun."</b> masih kosong!</p>";
 			} 
 		?>
+	</div>
+	<div class="row-footer">
+		<div class="col-footer" style="text-align: left;">
+			<p>Mengetahui,</p>
+			<p>Kepala Sekolah</p>
+			<p class="enter"></p>
+			<p style="text-decoration:underline;font-weight:bold;">Suprijana, S.Pd.</p>
+			<p>NIP. 196907231994031005</p>
+		</div>
+		<div class="col-footer" style="width:38%"></div>
+		<div class="col-footer" style="text-align: center;">
+			<p>	&nbsp; </p>
+			<p>Waka Sarpras</p>
+			<p class="enter"></p>
+			<p style="text-decoration:underline;font-weight:bold;">Yan Romero Njio, S.S.</p>
+		</div>
+		<div style="clear: both;"></div>
 	</div>
 </body>
 </html>
