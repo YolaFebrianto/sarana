@@ -153,6 +153,7 @@ class User extends CI_Controller {
 			'jenis_barang'	=> $this->input->post('jenis_barang'),
 			'sumber_dana'	=> $this->input->post('sumber_dana'),
 			'keterangan'	=> $this->input->post('keterangan'),
+			'status'		=> 0,
 		];
 		$this->db->where('no',$this->input->post('no'));
 		$cek = $this->db->update('tblbarang',$data);

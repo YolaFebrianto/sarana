@@ -1,3 +1,12 @@
+<?php
+  $dataUser=[];
+  if ($this->session->userdata('username') != '') {
+    $where = [
+      'username' => $this->session->userdata('username'),
+    ];
+    $dataUser = $this->db->get_where('tbluser',$where)->row_array();
+  }
+?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
@@ -47,6 +56,9 @@
                 <th>Kondisi Barang</th>
                 <th>Jenis Barang</th>
                 <th>Sumber Dana</th>
+                <?php if ($dataUser['level']>0) { ?>
+                <th>Aksi</th>
+                <?php } ?>
               </tr>
               </thead>
               <tbody>
@@ -63,6 +75,13 @@
               	<td><?php echo $value->kondisi_barang; ?></td>
               	<td><?php echo $value->jenis_barang; ?></td>
               	<td><?php echo $value->sumber_dana; ?></td>
+                <?php if ($dataUser['level']>0) { ?>
+                <td>
+                  <a href="<?=base_url('user/form_edit/'.$value->no);?>" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                    <span class="fa fa-edit"></span>
+                  </a>
+                </td>
+                <?php } ?>
               </tr>
               <?php } ?>
               </tbody>
