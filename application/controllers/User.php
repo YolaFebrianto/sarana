@@ -5,6 +5,8 @@ class User extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('UserProvider');
+		$this->load->model('BarangProvider');
 		if (empty($this->session->userdata('username')) && ($this->uri->segment(2)!='index') && ($this->uri->segment(2)!='prosesLogin')) {
 			redirect('user/index');
 		}
@@ -14,13 +16,13 @@ class User extends CI_Controller {
 		// JIKA SESSION USERNAME ADA/ SDH LOGIN
 		// HLM AWAL
 		if ($this->session->userdata('username') != '') {
-			$query = $this->db->get('tblbarang');
+			$query = $this->BarangProvider->get_all();
 			$data['jumlahData'] = $query->num_rows();
 			$data['barang']		= $query->result();
-			$data['jumlahTunggu'] = $this->db->get_where('tblbarang',['status'=>0])->num_rows();
-			$data['jumlahValidasi'] = $this->db->get_where('tblbarang',['status'=>1])->num_rows();
-			$data['jumlahTolak'] = $this->db->get_where('tblbarang',['status'=>2])->num_rows();
-			$data['jumlahSetujui'] = $this->db->get_where('tblbarang',['status'=>3])->num_rows();
+			$data['jumlahTunggu'] = $this->BarangProvider->get_where(['status'=>0])->num_rows();
+			$data['jumlahValidasi'] = $this->BarangProvider->get_where(['status'=>1])->num_rows();
+			$data['jumlahTolak'] = $this->BarangProvider->get_where(['status'=>2])->num_rows();
+			$data['jumlahSetujui'] = $this->BarangProvider->get_where(['status'=>3])->num_rows();
 			$this->load->view('user/header');
 			$this->load->view('user/home',$data);
 			$this->load->view('user/footer');
@@ -39,7 +41,7 @@ class User extends CI_Controller {
 			'password' => $password,
 			'status'   => 1
 		];
-		$cek = $this->db->get_where('tbluser',$where)->row_array();
+		$cek = $this->UserProvider->get_where($where)->row_array();
 		// Cek data pada tabel, JIKA ada maka BUAT SESSION utk Login
 		if ($cek != null) {
 			$this->session->set_userdata('username',$username);
@@ -53,7 +55,7 @@ class User extends CI_Controller {
 	}
 	public function barang_disetujui(){
 		// BARANG DISETUJUI KEPALA SEKOLAH
-		$query = $this->db->get_where('tblbarang',['status'=>3]);
+		$query = $this->BarangProvider->get_where(['status'=>3]);
 		$data['jumlahData'] = $query->num_rows();
 		$data['barang']		= $query->result();
 		$this->load->view('user/header');
@@ -62,7 +64,7 @@ class User extends CI_Controller {
 	}
 	public function barang_masuk(){
 		// BARANG MASUK (HASIL INPUT STAFF)
-		$query = $this->db->get_where('tblbarang',['status'=>0]);
+		$query = $this->BarangProvider->get_where(['status'=>0]);
 		$data['jumlahData'] = $query->num_rows();
 		$data['barang']		= $query->result();
 		$this->load->view('user/header');
@@ -71,7 +73,7 @@ class User extends CI_Controller {
 	}
 	public function barang_divalidasi(){
 		// BARANG DIVALIDASI WAKA
-		$query = $this->db->get_where('tblbarang',['status'=>1]);
+		$query = $this->BarangProvider->get_where(['status'=>1]);
 		$data['jumlahData'] = $query->num_rows();
 		$data['barang']		= $query->result();
 		$this->load->view('user/header');
@@ -80,7 +82,7 @@ class User extends CI_Controller {
 	}
 	public function barang_ditolak(){
 		// BARANG DITOLAK WAKA
-		$query = $this->db->get_where('tblbarang',['status'=>2]);
+		$query = $this->BarangProvider->get_where(['status'=>2]);
 		$data['jumlahData'] = $query->num_rows();
 		$data['barang']		= $query->result();
 		$this->load->view('user/header');
@@ -93,7 +95,7 @@ class User extends CI_Controller {
 			$tahun = $this->input->post('tahun');
 		}
 		$data['tahun'] = $tahun;
-		$data['barang'] = $this->db->get_where('tblbarang',['status'=>3,'YEAR(tanggal_masuk)'=>$tahun])->result();
+		$data['barang'] = $this->BarangProvider->get_where(['status'=>3,'YEAR(tanggal_masuk)'=>$tahun])->result();
 		$this->load->view('user/cetak-pdf',$data);
 		$html = $this->output->get_output();
 		// $this->load->library('dompdf_gen');
@@ -110,7 +112,7 @@ class User extends CI_Controller {
         $dompdf->stream($filename,array("Attachment"=>false));
 	}
 	public function form_add(){
-		$footerData['jumlahData'] = $this->db->get('tblbarang')->num_rows();
+		$footerData['jumlahData'] = $this->BarangProvider->get_all()->num_rows();
 		$this->load->view('user/header');
 		$this->load->view('user/form-add');	
 		$this->load->view('user/footer',$footerData);
@@ -127,7 +129,7 @@ class User extends CI_Controller {
 			'sumber_dana'	=> $this->input->post('sumber_dana'),
 			'keterangan'	=> $this->input->post('keterangan'),
 		];
-		$cek = $this->db->insert('tblbarang',$data);
+		$cek = $this->BarangProvider->insert($data);
 		if ($cek) {
 			$this->session->set_flashdata('info','Data Berhasil Ditambahkan!');
 		} else {
@@ -136,8 +138,8 @@ class User extends CI_Controller {
 		redirect('user/barang_masuk');
 	}
 	public function form_edit($no){
-		$footerData['jumlahData'] = $this->db->get('tblbarang')->num_rows();
-		$data['edit'] = $this->db->get_where('tblbarang',['no'=>$no])->row_array();
+		$footerData['jumlahData'] = $this->BarangProvider->get_all()->num_rows();
+		$data['edit'] = $this->BarangProvider->get_where(['no'=>$no])->row_array();
 		$this->load->view('user/header');
 		$this->load->view('user/form-edit',$data);	
 		$this->load->view('user/footer',$footerData);
@@ -155,8 +157,11 @@ class User extends CI_Controller {
 			'keterangan'	=> $this->input->post('keterangan'),
 			'status'		=> 0,
 		];
-		$this->db->where('no',$this->input->post('no'));
-		$cek = $this->db->update('tblbarang',$data);
+		// $this->db->where('no',$this->input->post('no'));
+		$where = [
+			'no' => $this->input->post('no'),
+		];
+		$cek = $this->BarangProvider->update($data,$where);
 		if ($cek) {
 			$this->session->set_flashdata('info','Data Berhasil Diubah!');
 		} else {
@@ -168,8 +173,11 @@ class User extends CI_Controller {
 		$data = [
 			'status' => $status,
 		];
-		$this->db->where('no',$no);
-		$cek = $this->db->update('tblbarang',$data);
+		// $this->db->where('no',$no);
+		$where = [
+			'no' => $no,
+		];
+		$cek = $this->BarangProvider->update($data,$where);
 		if ($cek) {
 			$this->session->set_flashdata('info','Data Berhasil Diubah!');
 		} else {
@@ -184,7 +192,7 @@ class User extends CI_Controller {
 		redirect($url);
 	}
 	public function delete($no){
-		$cek = $this->db->delete('tblbarang',['no'=>$no]);
+		$cek = $this->BarangProvider->delete($no);
 		if ($cek) {
 			$this->session->set_flashdata('info', 'Data Berhasil Dihapus!');
 		}
