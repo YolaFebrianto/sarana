@@ -60,7 +60,7 @@
                 <?php if($dataUser['level']==3){ ?>
                 <td>
                   <div data-toggle="tooltip" data-placement="top" title="Hapus">
-                    <a href="#" class="btn btn-sm btn-danger" onclick="konfirmasi(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalHapus">
+                    <a href="#" class="btn btn-sm btn-danger" onclick="konfirmasi(<?=$value->id_barang;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalHapus">
                       <span class="fa fa-trash-o"></span>
                     </a>
                   </div>

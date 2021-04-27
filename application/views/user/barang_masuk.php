@@ -62,18 +62,18 @@
               	<td><?php echo $value->sumber_dana; ?></td>
                 <?php if ($dataUser['level']==3) { ?>
               	<td>
-                  <a href="<?=base_url('user/form_edit/'.$value->no);?>" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                  <a href="<?=base_url('user/form_edit/'.$value->id_barang);?>" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Edit">
                     <span class="fa fa-edit"></span>
                   </a> 
                 </td>
                 <?php } else if($dataUser['level']==2) { ?>
                 <td>
-                  <a href="#" class="btn btn-sm btn-success" onclick="konfirmasi1(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalValidasi">
+                  <a href="#" class="btn btn-sm btn-success" onclick="konfirmasi1(<?=$value->id_barang;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalValidasi">
                     <span class="fa fa-check"></span> Validasi
                   </a>
                 </td>
                 <td>
-                  <a href="#" class="btn btn-sm btn-danger" onclick="konfirmasi2(<?=$value->no;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalTolak">
+                  <a href="#" class="btn btn-sm btn-danger" onclick="konfirmasi2(<?=$value->id_barang;?>,'<?=$value->kode_barang;?>')" data-toggle="modal" data-target="#modalTolak">
                     <span class="fa fa-trash-o"></span> Tolak
                   </a>
                 </td>

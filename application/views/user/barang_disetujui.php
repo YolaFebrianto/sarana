@@ -77,7 +77,7 @@
               	<td><?php echo $value->sumber_dana; ?></td>
                 <?php if ($dataUser['level']>0) { ?>
                 <td>
-                  <a href="<?=base_url('user/form_edit/'.$value->no);?>" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                  <a href="<?=base_url('user/form_edit/'.$value->id_barang);?>" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Edit">
                     <span class="fa fa-edit"></span>
                   </a>
                 </td>

@@ -12,9 +12,9 @@
 			return $this->db->get_where('tblbarang',$where);
 		}
 
-		public function delete($no)
+		public function delete($id_barang)
 		{
-			return $this->db->delete('tblbarang',['no'=>$no]);
+			return $this->db->delete('tblbarang',['id_barang'=>$id_barang]);
 		}
 
 		public function update($data,$where)

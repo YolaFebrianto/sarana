@@ -139,7 +139,7 @@ class User extends CI_Controller {
 	}
 	public function form_edit($no){
 		$footerData['jumlahData'] = $this->BarangProvider->get_all()->num_rows();
-		$data['edit'] = $this->BarangProvider->get_where(['no'=>$no])->row_array();
+		$data['edit'] = $this->BarangProvider->get_where(['id_barang'=>$no])->row_array();
 		$this->load->view('user/header');
 		$this->load->view('user/form-edit',$data);	
 		$this->load->view('user/footer',$footerData);
@@ -159,7 +159,7 @@ class User extends CI_Controller {
 		];
 		// $this->db->where('no',$this->input->post('no'));
 		$where = [
-			'no' => $this->input->post('no'),
+			'id_barang' => $this->input->post('id_barang'),
 		];
 		$cek = $this->BarangProvider->update($data,$where);
 		if ($cek) {
@@ -169,13 +169,13 @@ class User extends CI_Controller {
 		}
 		redirect('user/barang_masuk');
 	}
-	public function edit_status($no,$status=0){
+	public function edit_status($id_barang,$status=0){
 		$data = [
 			'status' => $status,
 		];
 		// $this->db->where('no',$no);
 		$where = [
-			'no' => $no,
+			'id_barang' => $id_barang,
 		];
 		$cek = $this->BarangProvider->update($data,$where);
 		if ($cek) {
@@ -191,8 +191,8 @@ class User extends CI_Controller {
 		}
 		redirect($url);
 	}
-	public function delete($no){
-		$cek = $this->BarangProvider->delete($no);
+	public function delete($id_barang){
+		$cek = $this->BarangProvider->delete($id_barang);
 		if ($cek) {
 			$this->session->set_flashdata('info', 'Data Berhasil Dihapus!');
 		}

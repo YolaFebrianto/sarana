@@ -6,7 +6,7 @@
 	<ol class="breadcrumb">
 		<li><a href="<?php echo base_url('user/index');?>"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li><a href="<?php echo base_url('user/barang_masuk') ?>"> Barang </a></li>
-		<li><a href="#"><?=$edit['no'];?></a></li>
+		<li><a href="#"><?=$edit['id_barang'];?></a></li>
 		<li class="active">Update</li>
 	</ol>
 </section>
@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 				<?= form_open('user/edit'); ?>
-				<input type="hidden" name="no" value="<?=$edit['no'];?>">
+				<input type="hidden" name="id_barang" value="<?=$edit['id_barang'];?>">
 					<div class="form-group">
 						<label>Kode Barang :</label>
 						<input type="text" name="kode_barang" class="form-control" required value="<?=$edit['kode_barang'];?>" readonly>
