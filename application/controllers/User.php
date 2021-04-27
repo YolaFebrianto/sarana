@@ -7,6 +7,7 @@ class User extends CI_Controller {
 		parent::__construct();
 		$this->load->model('UserProvider');
 		$this->load->model('BarangProvider');
+		$this->load->model('KelolaProvider');
 		if (empty($this->session->userdata('username')) && ($this->uri->segment(2)!='index') && ($this->uri->segment(2)!='prosesLogin')) {
 			redirect('user/index');
 		}
@@ -17,7 +18,7 @@ class User extends CI_Controller {
 		// HLM AWAL
 		if ($this->session->userdata('username') != '') {
 			$query = $this->BarangProvider->get_all();
-			$data['jumlahData'] = $query->num_rows();
+			#$data['jumlahData'] = $query->num_rows();
 			$data['barang']		= $query->result();
 			$data['jumlahTunggu'] = $this->BarangProvider->get_where(['status'=>0])->num_rows();
 			$data['jumlahValidasi'] = $this->BarangProvider->get_where(['status'=>1])->num_rows();
@@ -56,7 +57,7 @@ class User extends CI_Controller {
 	public function barang_disetujui(){
 		// BARANG DISETUJUI KEPALA SEKOLAH
 		$query = $this->BarangProvider->get_where(['status'=>3]);
-		$data['jumlahData'] = $query->num_rows();
+		#$data['jumlahData'] = $query->num_rows();
 		$data['barang']		= $query->result();
 		$this->load->view('user/header');
 		$this->load->view('user/barang_disetujui',$data);
@@ -65,7 +66,7 @@ class User extends CI_Controller {
 	public function barang_masuk(){
 		// BARANG MASUK (HASIL INPUT STAFF)
 		$query = $this->BarangProvider->get_where(['status'=>0]);
-		$data['jumlahData'] = $query->num_rows();
+		#$data['jumlahData'] = $query->num_rows();
 		$data['barang']		= $query->result();
 		$this->load->view('user/header');
 		$this->load->view('user/barang_masuk',$data);
@@ -74,7 +75,7 @@ class User extends CI_Controller {
 	public function barang_divalidasi(){
 		// BARANG DIVALIDASI WAKA
 		$query = $this->BarangProvider->get_where(['status'=>1]);
-		$data['jumlahData'] = $query->num_rows();
+		#$data['jumlahData'] = $query->num_rows();
 		$data['barang']		= $query->result();
 		$this->load->view('user/header');
 		$this->load->view('user/barang_validasi',$data);
@@ -83,7 +84,7 @@ class User extends CI_Controller {
 	public function barang_ditolak(){
 		// BARANG DITOLAK WAKA
 		$query = $this->BarangProvider->get_where(['status'=>2]);
-		$data['jumlahData'] = $query->num_rows();
+		#$data['jumlahData'] = $query->num_rows();
 		$data['barang']		= $query->result();
 		$this->load->view('user/header');
 		$this->load->view('user/barang_ditolak',$data);
@@ -112,10 +113,10 @@ class User extends CI_Controller {
         $dompdf->stream($filename,array("Attachment"=>false));
 	}
 	public function form_add(){
-		$footerData['jumlahData'] = $this->BarangProvider->get_all()->num_rows();
+		#$footerData['jumlahData'] = $this->BarangProvider->get_all()->num_rows();
 		$this->load->view('user/header');
 		$this->load->view('user/form-add');	
-		$this->load->view('user/footer',$footerData);
+		$this->load->view('user/footer');
 	}
 	public function add(){
 		$data = [
@@ -129,20 +130,35 @@ class User extends CI_Controller {
 			'sumber_dana'	=> $this->input->post('sumber_dana'),
 			'keterangan'	=> $this->input->post('keterangan'),
 		];
-		$cek = $this->BarangProvider->insert($data);
-		if ($cek) {
-			$this->session->set_flashdata('info','Data Berhasil Ditambahkan!');
-		} else {
+		try {
+			$cek = $this->BarangProvider->insert($data);
+			// INSERT KE TABEL KELOLA
+			$user = $this->session->get_userdata('username');
+			$userData = $this->UserProvider->get_where(['username'=>$user['username']])->row_array();
+			$barangData = $this->BarangProvider->get_where(['kode_barang'=>$this->input->post('kode_barang')])->row_array();
+			$kelola = [
+				'id_pengguna' => $userData['id_pengguna'],
+				'id_barang' => $barangData->id_barang,
+				'tanggal' => date('Y-m-d H:i:s'),
+				'status' => 'Masuk',
+			];
+			$cek2 = $this->KelolaProvider->insert($kelola);
+			if ($cek) {
+				$this->session->set_flashdata('info','Data Berhasil Ditambahkan!');
+			} else {
+				$this->session->set_flashdata('error','Data Gagal Ditambahkan!');
+			}	
+		} catch (Exception $e) {
 			$this->session->set_flashdata('error','Data Gagal Ditambahkan!');
 		}
 		redirect('user/barang_masuk');
 	}
 	public function form_edit($no){
-		$footerData['jumlahData'] = $this->BarangProvider->get_all()->num_rows();
+		#$footerData['jumlahData'] = $this->BarangProvider->get_all()->num_rows();
 		$data['edit'] = $this->BarangProvider->get_where(['id_barang'=>$no])->row_array();
 		$this->load->view('user/header');
 		$this->load->view('user/form-edit',$data);	
-		$this->load->view('user/footer',$footerData);
+		$this->load->view('user/footer');
 	}
 	public function edit(){
 		$data = [
@@ -161,10 +177,26 @@ class User extends CI_Controller {
 		$where = [
 			'id_barang' => $this->input->post('id_barang'),
 		];
-		$cek = $this->BarangProvider->update($data,$where);
-		if ($cek) {
-			$this->session->set_flashdata('info','Data Berhasil Diubah!');
-		} else {
+		try {
+			$cek = $this->BarangProvider->update($data,$where);
+			if ($this->input->post('status')>0) {
+				// INSERT KE TABEL KELOLA
+				$user = $this->session->get_userdata('username');
+				$userData = $this->UserProvider->get_where(['username'=>$user['username']])->row_array();
+				$kelola = [
+					'id_pengguna' => $userData['id_pengguna'],
+					'id_barang' => $this->input->post('id_barang'),
+					'tanggal' => date('Y-m-d H:i:s'),
+					'status' => 'Masuk',
+				];
+				$cek2 = $this->KelolaProvider->insert($kelola);
+			}
+			if ($cek) {
+				$this->session->set_flashdata('info','Data Berhasil Diubah!');
+			} else {
+				$this->session->set_flashdata('error','Data Gagal Diubah!');
+			}
+		} catch (Exception $e) {
 			$this->session->set_flashdata('error','Data Gagal Diubah!');
 		}
 		redirect('user/barang_masuk');
@@ -177,10 +209,33 @@ class User extends CI_Controller {
 		$where = [
 			'id_barang' => $id_barang,
 		];
-		$cek = $this->BarangProvider->update($data,$where);
-		if ($cek) {
-			$this->session->set_flashdata('info','Data Berhasil Diubah!');
-		} else {
+		try {
+			$cek = $this->BarangProvider->update($data,$where);
+			// INSERT KE TABEL KELOLA
+			$user = $this->session->get_userdata('username');
+			$userData = $this->UserProvider->get_where(['username'=>$user['username']])->row_array();
+			if ($status==3) {
+				$statusText = "Disetujui";
+			} else if ($status==2) {
+				$statusText = "Ditolak";
+			} else if ($status==1) {
+				$statusText = "Divalidasi";
+			} else {
+				$statusText = "Masuk";
+			} 
+			$kelola = [
+				'id_pengguna' => $userData['id_pengguna'],
+				'id_barang' => $id_barang,
+				'tanggal' => date('Y-m-d H:i:s'),
+				'status' => $statusText,
+			];
+			$cek2 = $this->KelolaProvider->insert($kelola);
+			if ($cek) {
+				$this->session->set_flashdata('info','Data Berhasil Diubah!');
+			} else {
+				$this->session->set_flashdata('error','Data Gagal Diubah!');
+			}
+		} catch (Exception $e) {
 			$this->session->set_flashdata('error','Data Gagal Diubah!');
 		}
 		$url='user/barang_disetujui';

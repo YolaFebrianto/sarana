@@ -18,6 +18,7 @@
 				<div class="col-md-8 col-md-offset-2">
 				<?= form_open('user/edit'); ?>
 				<input type="hidden" name="id_barang" value="<?=$edit['id_barang'];?>">
+				<input type="hidden" name="status" value="<?=$edit['status'];?>">
 					<div class="form-group">
 						<label>Kode Barang :</label>
 						<input type="text" name="kode_barang" class="form-control" required value="<?=$edit['kode_barang'];?>" readonly>
