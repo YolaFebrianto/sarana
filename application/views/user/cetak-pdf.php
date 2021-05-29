@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--<meta charset="utf-8">-->
+	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
 	<title>Sarana Prasarana SMK PGRI 2 Malang</title>
 	<!-- Tell the browser to be responsive to screen width -->
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!--<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">-->
 	<style type="text/css">
 	body{
 		font-family: sans-serif;
@@ -77,8 +74,6 @@
 		height: 100px;
 	}
 	</style>
-</head>
-<body>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-3">
@@ -100,7 +95,6 @@
 			if ($barang != null) { 
 		?>
 		<table class="table table-bordered" style="margin-bottom:200px;">
-			<thead>
 				<tr>
 					<th>No</th>
 					<th>Tanggal</th>
@@ -113,8 +107,6 @@
 					<th>Sumber Dana</th>
 					<th>Keterangan</th>
 				</tr>
-			</thead>
-			<tbody>
 				<?php
 					$no=1;
 					foreach ($barang as $value): 
@@ -134,7 +126,6 @@
 				<?php 
 					endforeach;
 				?>
-			</tbody>
 		</table>
 		<?php 
 			} else {
@@ -159,5 +150,3 @@
 		</div>
 		<div style="clear: both;"></div>
 	</div>
-</body>
-</html>

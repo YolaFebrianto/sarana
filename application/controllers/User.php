@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller {
 	public function __construct()
 	{
+		date_default_timezone_set('Asia/Jakarta');
 		parent::__construct();
 		$this->load->model('UserProvider');
 		$this->load->model('BarangProvider');
@@ -138,7 +139,7 @@ class User extends CI_Controller {
 			$barangData = $this->BarangProvider->get_where(['kode_barang'=>$this->input->post('kode_barang')])->row_array();
 			$kelola = [
 				'id_pengguna' => $userData['id_pengguna'],
-				'id_barang' => $barangData->id_barang,
+				'id_barang' => $barangData['id_barang'],
 				'tanggal' => date('Y-m-d H:i:s'),
 				'status' => 'Masuk',
 			];
