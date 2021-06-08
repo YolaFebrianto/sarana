@@ -112,6 +112,7 @@
 	}
 	$jml_brg_tunggu = $this->db->get_where('tblbarang',['status'=>0])->num_rows();
 	$jml_brg_blm_disetujui = $this->db->get_where('tblbarang',['status'=>0])->num_rows();
+	$jml_brg_validasi = $this->db->get_where('tblbarang',['status'=>1])->num_rows();
 ?>
 <div class="wrapper">
 	<header class="main-header">
@@ -169,6 +170,11 @@
 				<li <?php echo($this->uri->segment(2)=='barang_divalidasi')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_divalidasi'); ?>">
 						<i class="fa fa-undo"></i> <span>Data Barang Divalidasi</span>
+						<?php if($jml_brg_validasi>0): ?>
+						<span class="pull-right-container">
+							<small class="label pull-right bg-orange"><?=$jml_brg_validasi;?></small>
+						</span>
+						<?php endif; ?>
 					</a>
 				</li>
 				<?php
@@ -210,11 +216,11 @@
 				<li <?php echo($this->uri->segment(2)=='barang_masuk')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_masuk'); ?>">
 						<i class="fa fa-clock-o"></i> <span>Data Barang Tunggu</span>
-						<?php if($jml_brg_tunggu>0): ?>
-						<span class="pull-right-container">
-							<small class="label pull-right bg-orange"><?=$jml_brg_tunggu;?></small>
-						</span>
-						<?php endif; ?>
+						<?php //if($jml_brg_tunggu>0): ?>
+						<!-- <span class="pull-right-container">
+							<small class="label pull-right bg-orange"><?php //$jml_brg_tunggu;?></small>
+						</span> -->
+						<?php //endif; ?>
 					</a>
 				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_ditolak')?'class="active"':'';?>>
