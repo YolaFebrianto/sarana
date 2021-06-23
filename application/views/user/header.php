@@ -167,6 +167,11 @@
 						<i class="fa fa-list"></i> <span>Data Barang Disetujui</span>
 					</a>
 				</li>
+				<li <?php echo($this->uri->segment(2)=='barang_rusak')?'class="active"':'';?>>
+					<a href="<?php echo base_url('user/barang_rusak'); ?>">
+						<i class="fa fa-times"></i> <span>Data Barang Rusak</span>
+					</a>
+				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_divalidasi')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_divalidasi'); ?>">
 						<i class="fa fa-undo"></i> <span>Data Barang Divalidasi</span>
@@ -183,6 +188,11 @@
 				<li <?php echo($this->uri->segment(2)=='barang_disetujui')?'class="active"':'';?>>
 					<a href="<?php echo base_url('user/barang_disetujui'); ?>">
 						<i class="fa fa-list"></i> <span>Data Barang Disetujui</span>
+					</a>
+				</li>
+				<li <?php echo($this->uri->segment(2)=='barang_gudang')?'class="active"':'';?>>
+					<a href="<?php echo base_url('user/barang_gudang'); ?>">
+						<i class="fa fa-folder"></i> <span>Data Barang Gudang</span>
 					</a>
 				</li>
 				<li <?php echo($this->uri->segment(2)=='barang_divalidasi')?'class="active"':'';?>>

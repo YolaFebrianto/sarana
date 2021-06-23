@@ -31,9 +31,22 @@
 						<label>Tanggal :</label>
 						<input type="date" name="tanggal_masuk" class="form-control" required value="<?=$edit['tanggal_masuk'];?>">
 					</div>
+					<!-- <div class="form-group">
+						<label>Lokasi Barang :</label>
+						<input type="text" name="lokasi_barang" class="form-control" value="<?php //$edit['lokasi_barang'];?>">
+					</div> -->
 					<div class="form-group">
 						<label>Lokasi Barang :</label>
-						<input type="text" name="lokasi_barang" class="form-control" value="<?=$edit['lokasi_barang'];?>">
+						<select name="id_lokasi" class="form-control">
+							<option value="" selected="" disabled="">-- PILIH --</option>
+							<?php foreach($lokasi as $lok): ?>
+							<?php if($lok->id_lokasi == $edit['id_lokasi']): ?>
+							<option value="<?php echo $lok->id_lokasi; ?>" selected><?php echo $lok->lokasi_barang; ?></option>
+							<?php else: ?>
+							<option value="<?php echo $lok->id_lokasi; ?>"><?php echo $lok->lokasi_barang; ?></option>
+							<?php endif; ?>
+							<?php endforeach; ?>
+						</select>	
 					</div>
 					<div class="form-group">
 						<label>Jumlah Barang :</label>

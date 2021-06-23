@@ -33,6 +33,7 @@
                 <th>Tanggal</th>
                 <th>Kode Barang</th>
                 <th>Nama Barang</th>
+                <th>Foto</th>
                 <th>Lokasi Barang</th>
                 <th>Jumlah Barang</th>
                 <th>Kondisi Barang</th>
@@ -52,7 +53,12 @@
               	<td><?php echo $value->tanggal_masuk; ?></td>
               	<td><?php echo $value->kode_barang; ?></td>
               	<td><?php echo $value->nama_barang; ?></td>
-              	<td><?php echo $value->lokasi_barang; ?></td>
+                <td>
+                  <a href="<?php echo base_url().'template/uploads/'.$value->foto_barang;?>" target="_blank">
+                    <img src="<?php echo base_url().'template/uploads/'.$value->foto_barang;?>" width="50px" alt="<?php echo $value->foto_barang; ?>">
+                  </a>
+                </td>
+              	<td><?php echo @$value->l_lokasi_barang; ?></td>
               	<td><?php echo $value->jumlah_barang; ?></td>
               	<td><?php echo $value->kondisi_barang; ?></td>
               	<td><?php echo $value->jenis_barang; ?></td>

@@ -15,7 +15,7 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-				<?= form_open('user/add'); ?>
+				<?= form_open_multipart('user/add'); ?>
 				<?php
 					$this->db->order_by('id_barang','desc');
 					$lastId = $this->db->get_where('tblbarang',[],1)->row_array();
@@ -35,13 +35,26 @@
 						<label>Nama Barang :</label>
 						<input type="text" name="nama_barang" class="form-control" required>	
 					</div>
+		            <div class="form-group">
+		                <label>Foto Barang</label>
+		                <input type="file" name="foto_barang" class="form-control" required>
+		             </div>
 					<div class="form-group">
 						<label>Tanggal :</label>
 						<input type="date" name="tanggal_masuk" class="form-control" required>
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label>Lokasi Barang :</label>
 						<input type="text" name="lokasi_barang" class="form-control">	
+					</div> -->
+					<div class="form-group">
+						<label>Lokasi Barang :</label>
+						<select name="id_lokasi" class="form-control">
+							<option value="" selected="" disabled="">-- PILIH --</option>
+							<?php foreach($lokasi as $lok): ?>
+							<option value="<?php echo $lok->id_lokasi; ?>"><?php echo $lok->lokasi_barang; ?></option>
+							<?php endforeach; ?>
+						</select>	
 					</div>
 					<div class="form-group">
 						<label>Jumlah Barang :</label>
