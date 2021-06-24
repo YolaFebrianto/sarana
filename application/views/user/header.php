@@ -274,6 +274,11 @@
 				<?php
 					}
 				?>
+				<li <?php echo($this->uri->segment(2)=='lokasi')?'class="active"':'';?>>
+					<a href="<?php echo base_url('user/lokasi'); ?>">
+						<i class="fa fa-map-marker"></i> <span>Data Lokasi</span>
+					</a>
+				</li>
 			</ul>
 		</section>
 		<!-- /.sidebar -->

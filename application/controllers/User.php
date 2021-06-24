@@ -417,6 +417,72 @@ class User extends CI_Controller {
         $dompdf->render();
         $dompdf->stream($filename,array("Attachment"=>false));
 	}
+	//[24/06/2021]: LOKASI
+	public function lokasi(){
+		// BARANG MASUK (HASIL INPUT STAFF)
+		$query = $this->LokasiProvider->get_all();
+		#$data['jumlahData'] = $query->num_rows();
+		$data['lokasi']		= $query->result();
+		$this->load->view('user/header');
+		$this->load->view('user/lokasi',$data);
+		$this->load->view('user/footer');
+	}
+	public function add_lokasi(){
+		$this->load->view('user/header');
+		$this->load->view('user/add-lokasi');	
+		$this->load->view('user/footer');
+	}
+	public function add_lokasi_query(){
+		$data = [
+			'lokasi_barang' => $this->input->post('lokasi_barang'),
+		];
+		try {
+			$cek = $this->LokasiProvider->insert($data);
+			// INSERT KE TABEL KELOLA
+			if ($cek) {
+				$this->session->set_flashdata('info','Data Berhasil Ditambahkan!');
+			} else {
+				$this->session->set_flashdata('error','Data Gagal Ditambahkan!');
+			}	
+		} catch (Exception $e) {
+			$this->session->set_flashdata('error','Data Gagal Ditambahkan!');
+		}
+		redirect('user/lokasi');
+	}
+	public function edit_lokasi($no){
+		$data['edit'] = $this->LokasiProvider->get_where(['id_lokasi'=>$no])->row_array();
+		$this->load->view('user/header');
+		$this->load->view('user/edit-lokasi',$data);	
+		$this->load->view('user/footer');
+	}
+	public function edit_lokasi_query(){
+		$data = [
+			'lokasi_barang'		=> $this->input->post('lokasi_barang'),
+		];
+		// $this->db->where('no',$this->input->post('no'));
+		$where = [
+			'id_lokasi' => $this->input->post('id_lokasi'),
+		];
+		try {
+			$cek = $this->LokasiProvider->update($data,$where);
+			if ($cek) {
+				$this->session->set_flashdata('info','Data Berhasil Diubah!');
+			} else {
+				$this->session->set_flashdata('error','Data Gagal Diubah!');
+			}
+		} catch (Exception $e) {
+			$this->session->set_flashdata('error','Data Gagal Diubah!');
+		}
+		redirect('user/lokasi');
+	}
+	public function delete_lokasi($id_lokasi){
+		$cek = $this->LokasiProvider->delete($id_lokasi);
+		if ($cek) {
+			$this->session->set_flashdata('info', 'Data Berhasil Dihapus!');
+		}
+		redirect('user/lokasi');
+	}
+	///////////////////// [END LOKASI]
     function upload() {
         $config['upload_path'] = './template/uploads/';
         $config['allowed_types'] = 'jpeg|jpg|png|gif';
