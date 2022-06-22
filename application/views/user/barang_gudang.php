@@ -23,11 +23,11 @@
   <div class="row">
   	<div class="col-md-12">
       <div class="box box-info">
-        <!-- <div class="box-header pull-right">
-          <form action="<?php //echo base_url('user/printGudangPDF'); ?>" method="post">
+        <div class="box-header pull-right">
+          <form action="<?php echo base_url('user/printGudangPDF'); ?>" method="post">
             <div class="row">
               <div class="col-md-8 col-sm-8 col-xs-8">
-                <input type="text" name="tahun" class="form-control" value="<?php //echo date('Y'); ?>" placeholder="Input Tahun" id="year-input">
+                <input type="text" name="tahun" class="form-control" value="<?php echo date('Y'); ?>" placeholder="Input Tahun" id="year-input">
               </div>
               <div class="col-md-4 col-sm-4 col-xs-4">
                 <button type="button" class="btn btn-md btn-default btn-flat" data-toggle="modal" data-target="#modal" onclick="getTahun()">
@@ -40,7 +40,7 @@
             </div>
           </form>
         </div>
-        <div style="clear: both;"></div> -->
+        <div style="clear: both;"></div>
         <!-- /.box-footer -->
         <div class="box-body">
           <div class="table-responsive">

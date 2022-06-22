@@ -11,6 +11,7 @@ class User extends CI_Controller {
 		$this->load->model('KelolaProvider');
 		$this->load->model('LokasiProvider');
 		$this->load->model('BarangGudangProvider');
+		$this->load->model('FotoProvider');
 		if (empty($this->session->userdata('username')) && ($this->uri->segment(2)!='index') && ($this->uri->segment(2)!='prosesLogin')) {
 			redirect('user/index');
 		}
@@ -95,6 +96,50 @@ class User extends CI_Controller {
 		$this->load->view('user/barang_ditolak',$data);
 		$this->load->view('user/footer');
 	}
+	public function barang_foto($id_barang=0){
+		$query 			= $this->BarangProvider->get_where2(['tblbarang.id_barang'=>$id_barang]);
+		$data['barang']	= $query->row_array();
+		$data['foto']	= $this->FotoProvider->get_where(['id_barang'=>$id_barang])->result();
+		$this->load->view('user/header');
+		$this->load->view('user/barang_foto',$data);
+		$this->load->view('user/footer');
+	}
+	public function foto_upload(){
+		$id_barang = $this->input->post('id_barang');
+        try {
+        	$uploads_name = $this->upload();
+        } catch (Exception $e) {
+        	$this->session->set_flashdata('error','Gambar Gagal Diupload! Pastikan format filenya jpg, jpeg, png, atau gif. Dan pastikan ukuran file < 8Mb');
+        	redirect('user/barang_foto/'.$id_barang);
+        }
+		$data = [
+			'id_barang' 	=> $id_barang,
+			'foto_barang' 	=> $uploads_name,
+			'tgl_upload' 	=> date("Y-m-d H:i:s")
+		];
+		try{
+			$cek = $this->FotoProvider->insert($data);
+			if ($cek) {
+				$this->session->set_flashdata('info','Foto Berhasil Diupload!');
+			} else {
+				$this->session->set_flashdata('error','Foto Gagal Disimpan!');
+			}	
+		} catch (Exception $e) {
+			$this->session->set_flashdata('error','Foto Gagal Disimpan!');
+		}
+		redirect('user/barang_foto/'.$id_barang);
+	}
+	public function foto_hapus($id){
+		$foto = $this->FotoProvider->get_where(['id_foto'=>$id])->row_array();
+		try {
+			$hapus = $this->FotoProvider->delete($id);
+			unlink('template/uploads/'.@$foto['foto_barang']);
+			$this->session->set_flashdata('info','Foto Berhasil Dihapus!');
+		} catch (Exception $e) {
+			$this->session->set_flashdata('error','Foto Gagal Dihapus!');
+		}
+		redirect('user/barang_foto/'.@$foto['id_barang']);
+	}
 	public function printPDF(){
 		$tahun=0;
 		$lokasi="";
@@ -132,18 +177,18 @@ class User extends CI_Controller {
 		$this->load->view('user/footer');
 	}
 	public function add(){
-        try {
-        	$uploads_name = $this->upload();
-        } catch (Exception $e) {
-        	$this->session->set_flashdata('error','Gambar Gagal Diupload! Pastikan format filenya jpg, jpeg, png, atau gif. Dan pastikan ukuran file < 8Mb');
-        	redirect('user/form_add');
-        }
+        // try {
+        // 	$uploads_name = $this->upload();
+        // } catch (Exception $e) {
+        // 	$this->session->set_flashdata('error','Gambar Gagal Diupload! Pastikan format filenya jpg, jpeg, png, atau gif. Dan pastikan ukuran file < 8Mb');
+        // 	redirect('user/form_add');
+        // }
         $lokasi = $this->LokasiProvider->get_where(['id_lokasi'=>$this->input->post('id_lokasi')])->row_array();
 		$data = [
 			'tanggal_masuk' => $this->input->post('tanggal_masuk'),
 			'kode_barang'	=> $this->input->post('kode_barang'),
 			'nama_barang'	=> $this->input->post('nama_barang'),
-			'foto_barang'	=> $uploads_name,
+			//'foto_barang'	=> $uploads_name,
 			'lokasi_barang'	=> $lokasi['lokasi_barang'],
 			'id_lokasi'		=> $this->input->post('id_lokasi'),
 			'jumlah_barang'	=> $this->input->post('jumlah_barang'),

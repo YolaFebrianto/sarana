@@ -35,10 +35,6 @@
 						<label>Nama Barang :</label>
 						<input type="text" name="nama_barang" class="form-control" required>	
 					</div>
-		            <div class="form-group">
-		                <label>Foto Barang</label>
-		                <input type="file" name="foto_barang" class="form-control" required>
-		             </div>
 					<div class="form-group">
 						<label>Tanggal :</label>
 						<input type="date" name="tanggal_masuk" class="form-control" required>

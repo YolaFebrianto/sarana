@@ -63,7 +63,6 @@
                 <th>Tanggal</th>
                 <th>Kode Barang</th>
                 <th>Nama Barang</th>
-                <th>Foto</th>
                 <th>Lokasi Barang</th>
                 <th>Jumlah Barang</th>
                 <th>Kondisi Barang</th>
@@ -83,20 +82,18 @@
                 <td><?php echo $value->tanggal_masuk; ?></td>
                 <td><?php echo $value->kode_barang; ?></td>
                 <td><?php echo $value->nama_barang; ?></td>
-                <td>
-                  <a href="<?php echo base_url().'template/uploads/'.$value->foto_barang;?>" target="_blank">
-                    <img src="<?php echo base_url().'template/uploads/'.$value->foto_barang;?>" width="50px" alt="<?php echo $value->foto_barang; ?>">
-                  </a>
-                </td>
                 <td><?php echo @$value->l_lokasi_barang; ?></td>
                 <td><?php echo $value->jumlah_barang; ?></td>
                 <td><?php echo $value->kondisi_barang; ?></td>
                 <td><?php echo $value->jenis_barang; ?></td>
                 <td><?php echo $value->sumber_dana; ?></td>
                 <?php if ($dataUser['level']>0) { ?>
-                <td width="80px">
+                <td>
                   <a href="<?=base_url('user/form_edit/'.$value->id_barang);?>" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Edit">
                     <span class="fa fa-edit"></span>
+                  </a>
+                  <a href="<?=base_url('user/barang_foto/'.$value->id_barang);?>" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="Koleksi Foto">
+                    <span class="fa fa-camera-retro"></span>
                   </a>
                   <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalGudang<?php echo $value->id_barang; ?>">
                     <span class="fa fa-folder"></span> 
